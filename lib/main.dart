@@ -49,20 +49,22 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Column(
-        children: [
-          if (loadingCompleted) ...[
-            Expanded(
-              child: ListView.builder(
-                  itemCount: dataList.length,
-                  itemBuilder: (context, index) {
-                    return Image.network(dataList[index].image?.url ?? "");
-                  }),
-            )
-          ] else ...[
-            Text("Loading")
-          ]
-        ],
+      body: SafeArea(
+        child: Column(
+          children: [
+            if (loadingCompleted) ...[
+              Expanded(
+                child: ListView.builder(
+                    itemCount: dataList.length,
+                    itemBuilder: (context, index) {
+                      return Image.network(dataList[index].image?.url ?? "");
+                    }),
+              )
+            ] else ...[
+              Text("Loading")
+            ]
+          ],
+        ),
       ),
     );
   }
