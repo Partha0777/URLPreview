@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' show PreviewData;
 import 'package:flutter_link_previewer/flutter_link_previewer.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() {
   runApp(const MyApp());
@@ -90,7 +91,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               Container(
                                   padding: EdgeInsets.all(4),
                                 color: Colors.white,
-                                  child: Image.network(snapshot.data?.image?.url ?? "", height: 120, width: 120),
+                                  child: Image.network(snapshot.data?.image?.url ?? "", height: 140, width: 120),
                               ),
                               SizedBox(width: 12),
                               Expanded(
@@ -110,25 +111,41 @@ class _MyHomePageState extends State<MyHomePage> {
                                           overflow: TextOverflow.clip,
                                           maxLines: 2,
                                           style: const TextStyle(fontSize: 12)),
-                                        Container(
-                                          child: Text(
-                                            Uri.parse(urls[index]).host,
-                                            overflow: TextOverflow.clip,
-                                            maxLines: 2,
-                                            style: const TextStyle(
-                                                fontSize: 12,
-                                                color: Colors.white),
-                                          ),
+                                      GestureDetector(
+                                        onTap: (){
+                                          launchUrl(Uri.parse(urls[index]));
+                                        },
+                                        child: Container(
                                           decoration: BoxDecoration(
                                               shape: BoxShape.rectangle,
                                               color: Colors.blue,
                                               borderRadius:
-                                                  BorderRadius.circular(12)),
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 12, vertical: 4),
-                                          margin: EdgeInsets.symmetric(
+                                              BorderRadius.circular(24)),
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 4, vertical: 4),
+                                          margin: const EdgeInsets.symmetric(
                                               vertical: 12),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.only(left: 8),
+                                                child: Text(
+                                                  Uri.parse(urls[index]).host,
+                                                  overflow: TextOverflow.clip,
+                                                  maxLines: 2,
+                                                  style: const TextStyle(
+                                                      fontSize: 12,
+                                                      color: Colors.white),
+                                                ),
+                                              ),
+                                              SizedBox(width:8),
+                                              Icon(Icons.arrow_circle_right,size: 20,color: Colors.white,)
+                                            ],
+                                          ),
                                         )
+                                        ,
+                                      )
                                       ]
                                   ),
                                 ),
@@ -159,6 +176,12 @@ class _MyHomePageState extends State<MyHomePage> {
       requestTimeout: null,
       userAgent: null,
     );
+  }
+
+  Future<void> _launchUrl(Uri _url) async {
+    if (!await launchUrl(_url)) {
+      throw Exception('Could not launch $_url');
+    }
   }
 }
 
