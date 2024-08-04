@@ -32,6 +32,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   List<String> get urls => const [
     'https://www.flipkart.com/poco-m6-pro-5g-power-black-128-gb/p/itmef8fa46f89738?pid=MOBGRNZ3ER4N3K4F&lid=LSTMOBGRNZ3ER4N3K4FIYYGCU&marketplace=FLIPKART&store=tyy%2F4io&spotlightTagId=BestsellerId_tyy%2F4io&srno=b_1_1&otracker=browse&fm=organic&iid=223f3aac-9f1f-427e-8fd3-061ced12e537.MOBGRNZ3ER4N3K4F.SEARCH&ppt=browse&ppn=browse&ssid=1adck2t5e80000001722693892812',
+    'https://www.maxfashion.in/in/en/SHOP-Max-Black-Men-Printed-Side-Panel-Active-Shorts-For-Men/p/1000013589444-Black-BLACK',
+    'https://www.flipkart.com/mobile-phones-store?fm=neo%2Fmerchandising&iid=M_a76a398a-8bb3-44e2-81f5-5bcda3bcfd0b_1_372UD5BXDFYS_MC.ZRQ4DKH28K8J&otracker=hp_rich_navigation_2_1.navigationCard.RICH_NAVIGATION_Mobiles_ZRQ4DKH28K8J&otracker1=hp_rich_navigation_PINNED_neo%2Fmerchandising_NA_NAV_EXPANDABLE_navigationCard_cc_2_L0_view-all&cid=ZRQ4DKH28K8J',
     'https://www.amazon.in/LEGO-Champions-Mercedes-AMG-Performance-Project/dp/B0B8NXFFSH/?_encoding=UTF8&pd_rd_w=SWduZ&content-id=amzn1.sym.f8b2fc0c-779f-43a6-b25a-069849dd23a6%3Aamzn1.symc.fc11ad14-99c1-406b-aa77-051d0ba1aade&pf_rd_p=f8b2fc0c-779f-43a6-b25a-069849dd23a6&pf_rd_r=GSCQDJHNR2BGJR107BZQ&pd_rd_wg=ijyKu&pd_rd_r=81daf687-6ae7-4ce5-bf12-6c196009a2fa&ref_=pd_hp_d_atf_ci_mcx_mr_ca_hp_atf_d',
    'https://www.amazon.in/Samsung-Galaxy-Smartphone-Silver-Storage/dp/B0D83YD1TF/ref=sr_1_1_sspa?crid=LP76ZCZ9GJSB&dib=eyJ2IjoiMSJ9.qQ9Cfk186E8fFQPvICSvDjlVrr8bcIca49Z1zwow3xD3ia81j0m53tDwBY94PDOZgBnzbNiJMr8Z0QlwBt3FNOI3PtEoHGT33RnEgQvwbseK6LzAoKnpAJ85rNxNBFyE_PiwI5t2ATBGSvIVBxdxuWMFMnGA5J6lcoS2zNtHpd7bZLJjEAqBfD3PWr9USvkeMOFWiqUNStJXd0aA7VzqtqLhpxjmUEhmE41SE9ODqfo.-Leh3HVlUEOL6VVKKbByabLLV3EAoggQacD3ymz7DX4&dib_tag=se&keywords=samsung%2B5g%2Bmobile&qid=1722710919&sprefix=sa%2Caps%2C287&sr=8-1-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&th=1',
     'https://www.myntra.com/jeans/rareism/rareism-women-pink-slim-fit-slash-knee-jeans/20744022/buy',
@@ -81,78 +83,86 @@ class _MyHomePageState extends State<MyHomePage> {
                         return Text("Error: ${snapshot.error}");
                       } else if (snapshot.hasData) {
                         return
-                          Card(
-                          clipBehavior: Clip.hardEdge,
-                          margin: EdgeInsets.symmetric(horizontal: 12,vertical: 8),
-                          color: Colors.white,
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Container(
-                                  padding: EdgeInsets.all(4),
-                                color: Colors.white,
-                                  child: Image.network(snapshot.data?.image?.url ?? "", height: 140, width: 120),
-                              ),
-                              SizedBox(width: 12),
-                              Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsets.only(top: 8,right: 8),
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                          snapshot.data?.title ?? "",
-                                          overflow: TextOverflow.clip,
-                                          maxLines: 2,
-                                          style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
-                                      SizedBox(height: 12),
-                                      Text(
-                                          snapshot.data?.description ?? "",
-                                          overflow: TextOverflow.clip,
-                                          maxLines: 2,
-                                          style: const TextStyle(fontSize: 12)),
-                                      GestureDetector(
-                                        onTap: (){
-                                          launchUrl(Uri.parse(urls[index]));
-                                        },
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                              shape: BoxShape.rectangle,
-                                              color: Colors.blue,
-                                              borderRadius:
-                                              BorderRadius.circular(24)),
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 4, vertical: 4),
-                                          margin: const EdgeInsets.symmetric(
-                                              vertical: 12),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: [
-                                              Padding(
-                                                padding: const EdgeInsets.only(left: 8),
-                                                child: Text(
-                                                  Uri.parse(urls[index]).host,
-                                                  overflow: TextOverflow.clip,
-                                                  maxLines: 2,
-                                                  style: const TextStyle(
-                                                      fontSize: 12,
-                                                      color: Colors.white),
+                          GestureDetector(
+                            onTap: (){
+                              showProductInBottomSheet(snapshot.data,urls[index]);
+                            },
+                            child: Card(
+                            clipBehavior: Clip.hardEdge,
+                            margin: EdgeInsets.symmetric(horizontal: 12,vertical: 8),
+                            color: Colors.white,
+                            child:
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Container(
+                                    padding: EdgeInsets.all(4),
+                                  color: Colors.white,
+                                    child:
+
+                                    Image.network(snapshot.data?.image?.url ?? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk9ox9PplrrJl-lGvf1KH5OjKzS6xfKTnVmQ&s", height: 140, width: 120),
+                                ),
+                                SizedBox(width: 12),
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(top: 8,right: 8),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                            snapshot.data?.title ?? "",
+                                            overflow: TextOverflow.clip,
+                                            maxLines: 2,
+                                            style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+                                        SizedBox(height: 12),
+                                        Text(
+                                            snapshot.data?.description ?? "",
+                                            overflow: TextOverflow.clip,
+                                            maxLines: 2,
+                                            style: const TextStyle(fontSize: 12)),
+                                        GestureDetector(
+                                          onTap: (){
+                                            launchUrl(Uri.parse(urls[index]));
+                                          },
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                                shape: BoxShape.rectangle,
+                                                color: Colors.blue,
+                                                borderRadius:
+                                                BorderRadius.circular(24)),
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 4, vertical: 4),
+                                            margin: const EdgeInsets.symmetric(
+                                                vertical: 12),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                Padding(
+                                                  padding: const EdgeInsets.only(left: 8),
+                                                  child: Text(
+                                                    Uri.parse(urls[index]).host,
+                                                    overflow: TextOverflow.clip,
+                                                    maxLines: 2,
+                                                    style: const TextStyle(
+                                                        fontSize: 12,
+                                                        color: Colors.white),
+                                                  ),
                                                 ),
-                                              ),
-                                              SizedBox(width:8),
-                                              Icon(Icons.arrow_circle_right,size: 20,color: Colors.white,)
-                                            ],
-                                          ),
+                                                SizedBox(width:8),
+                                                Icon(Icons.arrow_circle_right,size: 20,color: Colors.white,)
+                                              ],
+                                            ),
+                                          )
+                                          ,
                                         )
-                                        ,
-                                      )
-                                      ]
+                                        ]
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        );
+                              ],
+                            ),
+                                                    ),
+                          );
                       } else {
                         return Text("No data available");
                       }
@@ -182,6 +192,118 @@ class _MyHomePageState extends State<MyHomePage> {
     if (!await launchUrl(_url)) {
       throw Exception('Could not launch $_url');
     }
+  }
+
+  void showProductInBottomSheet(PreviewData? previewData, String url){
+    showModalBottomSheet(
+      clipBehavior: Clip.hardEdge,
+      backgroundColor: Colors.white,
+      context: context,
+      isScrollControlled: true,
+      builder: (BuildContext context) {
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              width: double.infinity,
+              padding: EdgeInsets.symmetric(vertical: 20),
+              color: Colors.white,
+              child: Image.network(previewData?.image?.url ?? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk9ox9PplrrJl-lGvf1KH5OjKzS6xfKTnVmQ&s", height: 200),
+            ),
+            SizedBox(height: 12),
+            Padding(
+              padding: const EdgeInsets.all(12),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                        previewData?.title ?? "",
+                        overflow: TextOverflow.clip,
+                        style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                    SizedBox(height: 12),
+                    Text(
+                        previewData?.description ?? "",
+                        overflow: TextOverflow.clip,
+                        style: const TextStyle(fontSize: 14)),
+                    SizedBox(height: 24),
+                    GestureDetector(
+                      onTap: (){
+                        launchUrl(Uri.parse(url));
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                                shape: BoxShape.rectangle,
+                                color: Colors.blue,
+                                borderRadius:
+                                BorderRadius.circular(24)),
+                            margin: const EdgeInsets.symmetric(
+                                vertical: 12,horizontal: 12),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 8),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Text("Visit ${getNameFromUrl(url).capitalize()}",
+                                    overflow: TextOverflow.clip,
+                                    maxLines: 2,
+                                    style: const TextStyle(
+                                        fontSize: 16,
+                                        color: Colors.white, fontWeight: FontWeight.bold),
+                                  ),
+                                  SizedBox(width:8),
+                                  Icon(Icons.arrow_circle_right,size: 24,color: Colors.white,)
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                      ,
+                    )
+                  ]
+              ),
+            ),
+          ],
+        );
+      },
+    );
+
+  }
+
+
+  String getNameFromUrl(String url) {
+    // Parse the URL
+    Uri uri = Uri.parse(url);
+
+    // Get the host part of the URL
+    String host = uri.host;
+
+    // Remove 'www.' if present
+    if (host.startsWith('www.')) {
+      host = host.substring(4);
+    }
+
+    // Split by '.' and take the first part to get the name
+    List<String> parts = host.split('.');
+    if (parts.isNotEmpty) {
+      return parts.first;
+    }
+
+    // Return the host if the name extraction fails
+    return host;
+  }
+}
+
+extension StringExtension on String {
+  String capitalize() {
+    if (this.isEmpty) return this;
+    return this[0].toUpperCase() + this.substring(1).toLowerCase();
   }
 }
 
