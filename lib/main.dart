@@ -110,35 +110,26 @@ class _MyHomePageState extends State<MyHomePage> {
                                           overflow: TextOverflow.clip,
                                           maxLines: 2,
                                           style: const TextStyle(fontSize: 12)),
-
-                                      if(urls[index].contains("flipkart.com"))...[
                                         Container(
-                                          child:  Text(
-                                            "Flipkart",
+                                          child: Text(
+                                            Uri.parse(urls[index]).host,
                                             overflow: TextOverflow.clip,
                                             maxLines: 2,
-                                            style: const TextStyle(fontSize: 12,color: Colors.white),
+                                            style: const TextStyle(
+                                                fontSize: 12,
+                                                color: Colors.white),
                                           ),
-                                          decoration: BoxDecoration(shape: BoxShape.rectangle,color:Colors.blue,borderRadius: BorderRadius.circular(12)),
-                                          padding: EdgeInsets.symmetric(horizontal: 12,vertical: 4),
-                                          margin: EdgeInsets.symmetric(vertical: 12),
-                                        )
-                                      ]else...[
-                                        Container(
-                                          child:  Text(
-                                            "Amazon",
-                                            overflow: TextOverflow.clip,
-                                            maxLines: 2,
-                                            style: const TextStyle(fontSize: 12,color: Colors.white),
-                                          ),
-                                          decoration: BoxDecoration(shape: BoxShape.rectangle,color:Colors.black,borderRadius: BorderRadius.circular(12)),
-                                          padding: EdgeInsets.symmetric(horizontal: 12,vertical: 4),
-                                          margin: EdgeInsets.symmetric(vertical: 12),
+                                          decoration: BoxDecoration(
+                                              shape: BoxShape.rectangle,
+                                              color: Colors.blue,
+                                              borderRadius:
+                                                  BorderRadius.circular(12)),
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 12, vertical: 4),
+                                          margin: EdgeInsets.symmetric(
+                                              vertical: 12),
                                         )
                                       ]
-
-                                    ],
-
                                   ),
                                 ),
                               ),
