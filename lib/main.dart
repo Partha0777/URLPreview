@@ -66,13 +66,13 @@ class _MyHomePageState extends State<MyHomePage> {
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         return Card(
                           clipBehavior: Clip.hardEdge,
-                          margin: EdgeInsets.symmetric(horizontal: 12,vertical: 8),
+                          margin: const EdgeInsets.symmetric(horizontal: 12,vertical: 8),
                           color: Colors.white,
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Container(
-                                padding: EdgeInsets.all(4),
+                                padding: const EdgeInsets.all(4),
                                 color: Colors.white,
                                 height: 150,
                               ),
@@ -89,20 +89,20 @@ class _MyHomePageState extends State<MyHomePage> {
                             },
                             child: Card(
                             clipBehavior: Clip.hardEdge,
-                            margin: EdgeInsets.symmetric(horizontal: 12,vertical: 8),
+                            margin: const EdgeInsets.symmetric(horizontal: 12,vertical: 8),
                             color: Colors.white,
                             child:
                             Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Container(
-                                    padding: EdgeInsets.all(4),
+                                    padding: const EdgeInsets.all(4),
                                   color: Colors.white,
                                     child:
 
                                     Image.network(snapshot.data?.image?.url ?? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk9ox9PplrrJl-lGvf1KH5OjKzS6xfKTnVmQ&s", height: 140, width: 120),
                                 ),
-                                SizedBox(width: 12),
+                                const SizedBox(width: 12),
                                 Expanded(
                                   child: Padding(
                                     padding: const EdgeInsets.only(top: 8,right: 8),
@@ -114,7 +114,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                             overflow: TextOverflow.clip,
                                             maxLines: 2,
                                             style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
-                                        SizedBox(height: 12),
+                                        const SizedBox(height: 12),
                                         Text(
                                             snapshot.data?.description ?? "",
                                             overflow: TextOverflow.clip,
@@ -148,8 +148,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                                         color: Colors.white),
                                                   ),
                                                 ),
-                                                SizedBox(width:8),
-                                                Icon(Icons.arrow_circle_right,size: 20,color: Colors.white,)
+                                                const SizedBox(width:8),
+                                                const Icon(Icons.arrow_circle_right,size: 20,color: Colors.white,)
                                               ],
                                             ),
                                           )
@@ -164,7 +164,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     ),
                           );
                       } else {
-                        return Text("No data available");
+                        return const Text("No data available");
                       }
                     },
                   );
@@ -206,11 +206,11 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             Container(
               width: double.infinity,
-              padding: EdgeInsets.symmetric(vertical: 20),
+              padding: const EdgeInsets.symmetric(vertical: 20),
               color: Colors.white,
               child: Image.network(previewData?.image?.url ?? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk9ox9PplrrJl-lGvf1KH5OjKzS6xfKTnVmQ&s", height: 200),
             ),
-            SizedBox(height: 12),
+            const SizedBox(height: 12),
             Padding(
               padding: const EdgeInsets.all(12),
               child: Column(
@@ -221,12 +221,12 @@ class _MyHomePageState extends State<MyHomePage> {
                         previewData?.title ?? "",
                         overflow: TextOverflow.clip,
                         style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                    SizedBox(height: 12),
+                    const SizedBox(height: 12),
                     Text(
                         previewData?.description ?? "",
                         overflow: TextOverflow.clip,
                         style: const TextStyle(fontSize: 14)),
-                    SizedBox(height: 24),
+                    const SizedBox(height: 24),
                     GestureDetector(
                       onTap: (){
                         launchUrl(Uri.parse(url));
@@ -256,8 +256,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                         fontSize: 16,
                                         color: Colors.white, fontWeight: FontWeight.bold),
                                   ),
-                                  SizedBox(width:8),
-                                  Icon(Icons.arrow_circle_right,size: 24,color: Colors.white,)
+                                  const SizedBox(width:8),
+                                  const Icon(Icons.arrow_circle_right,size: 24,color: Colors.white,)
                                 ],
                               ),
                             ),
