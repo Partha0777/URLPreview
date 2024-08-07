@@ -190,12 +190,20 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Future<PreviewData> previewData(String url) async {
-    return await getPreviewData(
-      url,
-      proxy: null,
-      requestTimeout: null,
-      userAgent: null,
-    );
+    late PreviewData data;
+    for(int a = 0; a< 3; a++){
+       data = await getPreviewData(
+        url,
+        proxy: null,
+        requestTimeout: null,
+        userAgent: null,
+      );
+      if(data.image != null && data.title != null){
+        break;
+      }
+    }
+
+    return data;
   }
 
   Future<void> _launchUrl(Uri _url) async {
