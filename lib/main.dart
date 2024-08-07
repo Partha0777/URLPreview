@@ -190,8 +190,6 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Future<PreviewData> previewData(String url) async {
-    print("Fetching data for $url");
-    // Your data fetching logic here
     return await getPreviewData(
       url,
       proxy: null,
