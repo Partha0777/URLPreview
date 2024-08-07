@@ -320,20 +320,3 @@ extension StringExtension on String {
     return this[0].toUpperCase() + this.substring(1).toLowerCase();
   }
 }
-
-/*
-  Future<void> _fetchData(List<String> urlList) async {
-    for (String i in urlList) {
-      final previewData = await getPreviewData(
-        i,
-        proxy: null,
-        requestTimeout: null,
-        userAgent: null,
-      );
-      dataList.add(previewData);
-    }
-    setState(() {
-      loadingCompleted = true;
-    });
-  }
-*/
