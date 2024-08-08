@@ -52,8 +52,13 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Padding(padding: EdgeInsets.symmetric(vertical: 16,horizontal: 20),child: Text("Recommendations",
-              style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),),
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 16, horizontal: 20),
+              child: Text(
+                "Recommendations",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+              ),
+            ),
             Expanded(
               child: ListView.builder(
                 itemCount: urls.length,
@@ -96,12 +101,15 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Image.network(
-                                    snapshot.data?.image?.url ??
-                                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk9ox9PplrrJl-lGvf1KH5OjKzS6xfKTnVmQ&s",
-                                    height: 150,
-                                    width: 150,
-                                  fit:  Uri.parse(urls[index])
-                                      .host.contains("amazon") ? BoxFit.cover :null,
+                                  snapshot.data?.image?.url ??
+                                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk9ox9PplrrJl-lGvf1KH5OjKzS6xfKTnVmQ&s",
+                                  height: 150,
+                                  width: 150,
+                                  fit: Uri.parse(urls[index])
+                                          .host
+                                          .contains("amazon")
+                                      ? BoxFit.cover
+                                      : null,
                                 ),
                                 const SizedBox(width: 12),
                                 Expanded(
@@ -193,14 +201,14 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Future<PreviewData> previewData(String url) async {
     late PreviewData data;
-    for(int a = 0; a< 3; a++){
-       data = await getPreviewData(
+    for (int a = 0; a < 3; a++) {
+      data = await getPreviewData(
         url,
         proxy: null,
         requestTimeout: null,
         userAgent: null,
       );
-      if(data.image != null && data.title != null){
+      if (data.image != null && data.title != null) {
         break;
       }
     }
