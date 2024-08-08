@@ -50,7 +50,10 @@ class _MyHomePageState extends State<MyHomePage> {
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            const Padding(padding: EdgeInsets.symmetric(vertical: 16,horizontal: 20),child: Text("Recommendations",
+              style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),),
             Expanded(
               child: ListView.builder(
                 itemCount: urls.length,
@@ -92,14 +95,13 @@ class _MyHomePageState extends State<MyHomePage> {
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
-                                Container(
-                                  padding: const EdgeInsets.all(4),
-                                  color: Colors.white,
-                                  child: Image.network(
-                                      snapshot.data?.image?.url ??
-                                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk9ox9PplrrJl-lGvf1KH5OjKzS6xfKTnVmQ&s",
-                                      height: 140,
-                                      width: 120),
+                                Image.network(
+                                    snapshot.data?.image?.url ??
+                                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk9ox9PplrrJl-lGvf1KH5OjKzS6xfKTnVmQ&s",
+                                    height: 150,
+                                    width: 150,
+                                  fit:  Uri.parse(urls[index])
+                                      .host.contains("amazon") ? BoxFit.cover :null,
                                 ),
                                 const SizedBox(width: 12),
                                 Expanded(
