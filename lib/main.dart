@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
         home: MyHomePage(),
       );
 }
+const String placeHolder = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk9ox9PplrrJl-lGvf1KH5OjKzS6xfKTnVmQ&s";
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -101,8 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Image.network(
-                                  snapshot.data?.image?.url ??
-                                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk9ox9PplrrJl-lGvf1KH5OjKzS6xfKTnVmQ&s",
+                                  snapshot.data?.image?.url ?? placeHolder,
                                   height: 150,
                                   width: 150,
                                   fit: Uri.parse(urls[index])
